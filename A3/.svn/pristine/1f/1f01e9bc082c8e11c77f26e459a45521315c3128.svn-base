@@ -1,0 +1,34 @@
+package Methods;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import Methods.getHtml;
+
+public class FirstFivePub {
+  
+ public static String extractFirstFivePub(String googleScholarURL) {
+    try {
+      getHtml googleScholarParser = new getHtml();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForFirstFivePub =
+          "<td id=\"col-citedby\"><a class=\"cit-dark-link\" "
+          + "href=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForFirstFivePub);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      int totalCitation = 0;
+      for(int count = 1; count < 6; count++){
+        matcherObject.find();
+        totalCitation += Integer.parseInt(matcherObject.group(2));
+      }
+      System.out.println("3. Number of i10-index after 2009:\n" + "\t"+ 
+      totalCitation);
+      
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+    return googleScholarURL;
+    
+   }
+  
+}

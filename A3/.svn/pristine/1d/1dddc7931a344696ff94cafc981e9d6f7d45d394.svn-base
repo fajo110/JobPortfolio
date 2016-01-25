@@ -1,0 +1,28 @@
+package Methods;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import driver.MyParser;
+
+public class NumAllCitations {
+  
+public static void extractNumAllCitations(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForAllCitationExtraction =
+          "<td class=\"cit-borderleft cit-data\">(.*?)</td>";
+      Pattern patternObject = Pattern.compile(reForAllCitationExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      matcherObject.find();
+      System.out.println("Number of All Citations are " + 
+      matcherObject.group(1));
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+    
+   }
+  
+}

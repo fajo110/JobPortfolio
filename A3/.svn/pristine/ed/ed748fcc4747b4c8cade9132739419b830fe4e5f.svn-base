@@ -1,0 +1,32 @@
+package Methods;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import Methods.getHtml;
+
+public class AuthorsName {
+  
+  public static void extractAuthorsName(String googleScholarURL) {
+    try {
+      getHtml googleScholarParser = new getHtml();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForAuthorExtraction =
+          "<span id=\"cit-name-display\" class=\"cit-in-place-nohover\">"
+          + "(.*?)</span>";
+      Pattern patternObject = Pattern.compile(reForAuthorExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        System.out.println("------------------------------------------"
+            + "-----------------------------");
+        System.out.println("1.Name of Author:\n " + "\t" +
+            matcherObject.group(1));
+      }
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+    
+   }
+  
+}

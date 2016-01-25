@@ -1,0 +1,39 @@
+// **********************************************************
+// Assignment1:
+// Student1: Syed Muhammad Farjad Abbas
+// UTOR user_name: abbass13
+// UT Student #: 1000484157
+// Author: Syed Abbas
+//
+// Student2: Conor O'Hara
+// UTOR user_name: oharacon
+// UT Student #: 992197083
+// Author: Conor O'Hara
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read the plagiarism section in the course info
+// sheet of CSC 207 and understand the consequences.
+// *********************************************************
+package a1;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+public class JShell {
+
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+      String command="";
+      while(!command.equals("exit")){
+        Scanner in = new Scanner(System.in);
+        System.out.print("/# ");
+        command = in.nextLine();
+      }
+  }
+}
+
+

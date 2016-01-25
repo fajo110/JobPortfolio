@@ -1,0 +1,34 @@
+package driver;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import driver.*;
+
+public class AuthorsName {
+  
+  private static void extractAuthorsName(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForAuthorExtraction =
+          "<span id=\"cit-name-display\" "
+              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+      Pattern patternObject = Pattern.compile(reForAuthorExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        System.out.println("DEBUG: Authors Name is " + matcherObject.group(1));
+      }
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+    
+   }
+  
+}

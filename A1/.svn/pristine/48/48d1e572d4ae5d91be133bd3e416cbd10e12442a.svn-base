@@ -1,0 +1,16 @@
+Class Name: JShell
+Sub Class Name: ManageDirectories
+
+Responsibilities:
+A directory is created succefully, if the commands are created properly
+Find the current path location
+Changes the directory path
+It takes a related path
+it takes an absolute path
+It refers the user to another directory, based on the current path.
+A shell error would give an error, due to failure command
+
+Collaboration:
+JShellPrint, 
+MoveDirectory, 
+Get

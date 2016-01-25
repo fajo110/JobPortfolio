@@ -1,0 +1,36 @@
+package Methods;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import driver.MyParser;
+
+
+public class FirstThreePubs {
+  
+ public static String extractFirstThreePubs(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForFirstThreePubs =
+          "<tr class=\"cit-table item\"><td id=\"col-title\"><a href=\"(.*?)\" "
+          + "class=\"cit-dark-large-link\">([^<]+)";
+      Pattern patternObject = Pattern.compile(reForFirstThreePubs);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      String firstThreePubs = new String();
+      //create a String object to present the value
+      for (int number=1; number <=3; number++){
+        matcherObject.find();
+        firstThreePubs += "\t"+ number + "- " + matcherObject.group(2) + "\n";
+      }
+    System.out.println("4. Title of the first 3 Publications: " +"\n" 
+        + firstThreePubs);
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+    return googleScholarURL;     
+ 
+}
+}
